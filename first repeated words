@@ -1,0 +1,16 @@
+import re
+def firstRepeatedWord(sentence):
+    # Write your code here
+    #break words into array using the delimiters
+    words = re.split('\s| \t| , | ; | - | .', sentence)
+
+    collection = []
+    found = ""
+    for word in words:
+        if word in collection:
+          found = word
+          break
+        else:
+          if word != '':
+            collection.append(word)
+firstRepeatedWord("that                 that occurs sometimes")
