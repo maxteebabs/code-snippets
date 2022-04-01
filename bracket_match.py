@@ -8,12 +8,14 @@ class Stack:
         self.items.append(data)
             
     def pop(self):
+        if(not self.isEmpty()):
+            raise Exception("Empty")
         last_index = len(self.items) - 1
         last_item = self.items.pop(last_index)
         return last_item
     
     def isEmpty(self):
-        return True if len(self.items) == 0 else False
+        return len(self.items) == 0
         
 def isLeftBracket(bracket: str):
     return True if bracket in "{[(" else False
