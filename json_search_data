@@ -1,0 +1,17 @@
+#search json structure 
+function searchJsonData(json, searchKey, parentKey = "") {
+  let found = false;
+  for(let i = 0; i < Object.keys(json).length; i++) {
+    let key = Object.keys(json)[i];
+    if(key === 'uuid') {
+      if(json[key]=== searchKey) {
+        found = true;
+        return {json, parentKey};
+      }
+    }else if(key !== "files" && !found) {
+      let response = searchJsonData(json[key], searchKey, key); 
+      if(response) return response;
+    }
+  };
+  return null; 
+}
