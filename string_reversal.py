@@ -20,3 +20,11 @@ def reverseString1(str:str):
     return "".join(splitted_str)
 result = reverseString1("my world")
 print(result)
+
+
+function reverseStringWithRecursion(str) {
+  if(str.length === 0) return '';
+  return reverseStringWithRecursion(str.slice(1)) + str.slice(0, 1);;
+}
+
+console.log('reverse string', reverseStringWithRecursion('hello'));
