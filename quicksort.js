@@ -28,3 +28,38 @@ function mySort(arr) {
 }
 mySort(arr);
 console.log(arr);
+
+
+//function quickSort(arr, leftIndex, rightIndex) {
+//   // better than merge sort cos it has a space complexity of 0(nlog n) but
+//   // not suited for worst case ocs of 0(n^2)
+//   let pivot = arr.length -1;
+//   const length = arr.length;
+//   if(leftIndex < rightIndex) {
+//     pivot = rightIndex;
+//     const partitionIndex = qsPartition(arr, pivot, leftIndex, rightIndex);
+//     quickSort(arr, leftIndex, partitionIndex - 1);
+//     quickSort(arr, partitionIndex + 1, rightIndex);
+//   }
+//   return arr;
+// }
+
+// function qsPartition(arr, pivot, leftIndex, rightIndex) {
+//   let partitionIndex = leftIndex;
+//   for(let i = leftIndex; i< rightIndex; i++) {
+//     if(arr[i] < arr[pivot]) {
+//       swap(arr, i, partitionIndex);
+//       partitionIndex++;
+//     }
+//   }
+//   swap(arr, rightIndex, partitionIndex);
+//   return partitionIndex;
+// }
+
+// function swap(arr, leftIndex, rightIndex) {
+//   const temp = arr[leftIndex];
+//   arr[leftIndex] = arr[rightIndex];
+//   arr[rightIndex] = temp;
+// }
+// const qsResult = quickSort(randomNumbers, 0, randomNumbers.length - 1);
+// console.log('Result:: ', qsResult)
