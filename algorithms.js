@@ -33,4 +33,120 @@ var maxDepth = function(root) {
   return Math.max(leftDepth, rightDepth) + 1;    // Adding 1 is the current node which is the parent of the two subtrees...
 };
 
+var reverseList = function(head) {
+  let current = head;
+  let prev = null;
+  while(current) {
+      let future = current.next;
+      current.next = prev;
+      prev = current;
+      current = future;
+  }
+  return prev;
+};
+
+/**
+ * @param {string} columnTitle
+ * @return {number}
+ */
+ var titleToNumber = function(columnTitle) {
+  let sum = 0;
+  let index = 1;
+  for(let i = columnTitle.length - 1; i >= 0; i--) {
+      sum += index * (columnTitle[i].charCodeAt() - 64)
+      index*= 26;
+  }
+  return sum
+};
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var majorityElement = function(nums) {
+  const n = nums.length;
+  const majority = Math.floor(n / 2);
+  let buckets = {};
+
+  // quick checks
+  if (n <= 2) { return nums[0]; }
+
+  for (let i = 0; i < n; i++) {
+    buckets[nums[i]] = buckets[nums[i]] || 0;
+    buckets[nums[i]]++;
+    if (buckets[nums[i]] > majority) {
+      return nums[i];
+    }
+  }
+};
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+ var containsDuplicate = function(nums) {
+  for(let i = 0; i< nums.length; i++) {
+      const num = nums[i];
+      const subNums = nums.slice(i+1);
+      if(subNums.indexOf(num) !== -1) {
+          return true;
+      }
+  }
+  return false;
+};
+
+var containsDuplicate = function(nums) {
+  const s = new Set(nums); return s.size !== nums.length
+};
+
+var firstUniqChar = function(str){
+  var freq = Array(26).fill(0);
+  for(var s of str){
+      const idx = s.charCodeAt()-97;
+      freq[idx]+=1;
+  }
+  for(var i=0; i<str.length; i++){
+      const idx = str[i].charCodeAt()-97;
+      if(freq[idx] === 1) return i;
+  }
+  return -1;
+}
+
+// convert sorted array to binary search tree
+var sortedArrayToBST = function(nums) {
+  function create(left, right) {
+      if (left > right) {
+          return null;
+      }
+      
+      const i = Math.floor((right - left) / 2) + left;
+      
+      const node = new TreeNode(nums[i]);
+      
+      node.left = create(left, i - 1);
+      node.right = create(i + 1, right);
+      
+      return node;
+  }
+  
+  return create(0, nums.length - 1);
+};
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var missingNumber = function (nums) {
+  const n = nums.length;
+  const expectedSum = (n * (n + 1)) / 2;
+  let actualSum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    actualSum = actualSum + nums[i]
+  }
+  
+  return expectedSum-actualSum;
+};
+
+
 
