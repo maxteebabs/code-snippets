@@ -148,5 +148,92 @@ var sortedArrayToBST = function(nums) {
   return expectedSum-actualSum;
 };
 
+// Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result 
+// must appear as many times as it shows in both arrays and you may return the result in any order.
+var intersect = function(nums1, nums2) {
+  const map = new Map();
+  for (const n of nums1) {
+      if (map.has(n)) {
+          map.set(n, map.get(n) + 1);
+      } else {
+          map.set(n, 1);
+      }
+  }
+  const result = [];
+  for (const n of nums2) {
+      if (map.has(n) && map.get(n) > 0) {
+          result.push(n);
+          map.set(n, map.get(n) - 1);
+      }
+  }
+  return result;
+};
+
+// Best Time to Buy and Sell Stock
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+ var maxProfit = function(prices) {
+  let maxProfit = 0;
+  let minPrice = prices[0];
+  for (let i = 1; i < prices.length; i++) {
+      const currentPrice = prices[i];
+      const currentProfit = currentPrice - minPrice;
+      if (currentProfit > maxProfit) {
+          maxProfit = currentProfit;
+      }
+      if (currentPrice < minPrice) {
+          minPrice = currentPrice;
+      }
+  }
+  return maxProfit;
+};
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+ var isHappy = function(n) {
+  let nString = n.toString()
+
+  return validate(nString, new Set())
+};
+
+function validate(nString, prevNums){
+
+  if ( nString === '1' ) return true
+
+  if ( prevNums.has(nString) ) return false
+
+  prevNums.add(nString)
+
+  let newN = 0
+
+  for ( let num of nString.split("") ){
+
+      newN += num ** 2
+  }
+  return validate(newN.toString(), prevNums)
+}
+
+// Given an integer numRows, return the first numRows of Pascal's triangle.
+var generate = function(numRows) {
+  let triangle=[[1]]
+  for (let i = 1; i < numRows; i++){
+      const newArr =[1]
+      for (let j = 1; j < i; j++){
+          newArr.push(triangle[i-1][j] + triangle[i-1][j-1])
+      }
+      newArr.push(1)
+      triangle.push(newArr)
+  }
+  return triangle;
+};
+
+
+
+
+
 
 
